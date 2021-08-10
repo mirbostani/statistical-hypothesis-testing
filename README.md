@@ -18,9 +18,9 @@ optional arguments:
   -d DATASET_FILE, --dataset_file DATASET_FILE
                         SQuAD v1.1 dataset file, e.g., dev-v1.1.json
   -b BASELINE_PREDICTION_FILE, --baseline_prediction_file BASELINE_PREDICTION_FILE
-                        Baseline model's prediction file on the input dataset
+                        Baseline model prediction file on the input dataset
   -e EXPERIMENTAL_PREDICTION_FILE, --experimental_prediction_file EXPERIMENTAL_PREDICTION_FILE
-                        Experimental model's prediction file on the input
+                        Experimental model prediction file on the input
                         dataset
   -z SAMPLE_SIZE, --sample_size SAMPLE_SIZE
                         If sample size (k) is less than the size of the input
@@ -38,7 +38,7 @@ optional arguments:
 
 ## Example
 
-First, you should feed your dataset file (e.g., `dev-v1.1.json`) to the baseline and experimental models and get their predictions. A sample of the output file format is as follows:
+First, you should feed your dataset file (e.g., `dev-v1.1.json`) to the baseline and experimental models and get their predictions. A sample of the prediction file format is as follows:
 
 ```json
 {
@@ -49,7 +49,6 @@ First, you should feed your dataset file (e.g., `dev-v1.1.json`) to the baseline
     "57275e95f1498d1400e8f6f7": "Sports Programs",
     "57286f373acd2414000df9de": "Department of State Affairs",
     "5726a3c6f1498d1400e8e5b0": "1989",
-    ...
 }
 ```
 
@@ -57,13 +56,13 @@ Then, use the script to perform a hypothesis test on the predictions.
 
 ```shell
 $ python hypothesis_testing.py 
-  --dataset_file ./dev-v1.1.json 
-  --baseline_prediction_file ./baseline_predictions.json 
-  --experimental_prediction_file ./experimental_predictions.json 
-  --sample_size 100 
-  --significance_level 0.05
-
-100%|████████████████████████████████████████████████████████████████████████████████| 1/1 [00:00<00:00,  2.73it/s]
+    --dataset_file ./dev-v1.1.json 
+    --baseline_prediction_file ./baseline_predictions.json 
+    --experimental_prediction_file ./experimental_predictions.json 
+    --sample_size 100 
+    --significance_level 0.05
+```
+```json
 {
     "resampling_repetition": 10000,
     "significance_level": 0.05,
